@@ -1,9 +1,9 @@
 {
-    "name"       : "imobia/asaas-php-sdk",
+    "name"       : "imobia/asaas-php-sdk-v2",
     "type"       : "library",
     "description": "Asaas.com PHP API Wrapper",
     "keywords"   : ["Asaas", "API", "Payment SaaS", "Credit Card", "Boleto"],
-    "homepage"   : "https://https://github.com/SistemaImobia/Asaas-SDK-php",
+    "homepage"   : "https://github.com/SistemaImobia/Asaas-SDK-php-v2",
     "license"    : "MIT",
     "authors": [
         {
@@ -23,6 +23,10 @@
         {
             "name"    : "Mateus Belli",
             "email"   : "mateusbelli@hotmail.com"
+        },
+        {
+            "name"    : "Marcelo Migliorini",
+            "email"   : "celo_mig@hotmail.com"
         }
     ],
     "require": {
