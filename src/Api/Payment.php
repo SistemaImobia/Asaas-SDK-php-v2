@@ -169,7 +169,9 @@ class Payment extends \Imobia\Asaas\Api\AbstractApi
      */
     public function getPixQrCode($id)
     {
-        return $this->adapter->get(sprintf('%s/payments/%s/pixQrCode', $this->endpoint, $id));
+        $qrCode = $this->adapter->get(sprintf('%s/payments/%s/pixQrCode', $this->endpoint, $id));
+
+        return json_decode($qrCode);
     }
 
     /**
@@ -180,6 +182,8 @@ class Payment extends \Imobia\Asaas\Api\AbstractApi
 
     public function getIdentificationField($id)
     {
-        return $this->adapter->get(sprintf('%s/payments/%s/identificationField', $this->endpoint, $id));
+        $identificationField = $this->adapter->get(sprintf('%s/payments/%s/identificationField', $this->endpoint, $id));
+
+        return json_decode($identificationField);
     }
 }
