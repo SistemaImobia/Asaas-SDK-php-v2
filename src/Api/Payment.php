@@ -1,4 +1,5 @@
 <?php
+
 namespace Imobia\Asaas\Api;
 
 // Entities
@@ -159,5 +160,26 @@ class Payment extends \Imobia\Asaas\Api\AbstractApi
     {
         $payment = $this->adapter->post(sprintf('%s/payments/%s/receiveInCash', $this->endpoint, $id));
         return new PaymentEntity($payment);
+    }
+
+    /**
+     * Get pixQrCode of given payment
+     *
+     * @param  string|int  $id  Payment Id
+     */
+    public function getPixQrCode($id)
+    {
+        return $this->adapter->get(sprintf('%s/payments/%s/pixQrCode', $this->endpoint, $id));
+    }
+
+    /**
+     * Get identificationField of given payment
+     *
+     * @param  string|int  $id  Payment Id
+     */
+
+    public function getIdentificationField($id)
+    {
+        return $this->adapter->get(sprintf('%s/payments/%s/identificationField', $this->endpoint, $id));
     }
 }
