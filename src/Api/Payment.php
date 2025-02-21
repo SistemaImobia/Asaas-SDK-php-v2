@@ -1,5 +1,4 @@
 <?php
-
 namespace Imobia\Asaas\Api;
 
 // Entities
@@ -20,7 +19,7 @@ class Payment extends \Imobia\Asaas\Api\AbstractApi
      */
     public function getAll(array $filters = [])
     {
-        if (!isset($filters['limit'])) {
+        if (! isset($filters['limit'])) {
             $filters['limit']  = static::DEFAULT_LIMIT;
             $filters['offset'] = 0;
         }
@@ -125,6 +124,22 @@ class Payment extends \Imobia\Asaas\Api\AbstractApi
     public function update($id, array $data)
     {
         $payment = $this->adapter->post(sprintf('%s/payments/%s', $this->endpoint, $id), $data);
+
+        $payment = json_decode($payment);
+
+        return new PaymentEntity($payment);
+    }
+
+    /**
+     * Update Payment By Id
+     *
+     * @param   string  $id    Payment Id
+     * @param   array   $data  Payment Data
+     * @return  PaymentEntity
+     */
+    public function updateSplit($id, array $data)
+    {
+        $payment = $this->adapter->put(sprintf('%s/payments/%s', $this->endpoint, $id), $data);
 
         $payment = json_decode($payment);
 
