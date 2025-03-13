@@ -1,5 +1,4 @@
 <?php
-
 namespace Imobia\Asaas\Entity;
 
 /**
@@ -73,4 +72,9 @@ final class FinancialTransaction extends \Imobia\Asaas\Entity\AbstractEntity
      * @var string
      */
     public $creditBureauReportId;
+
+    /**
+     * @var string
+     */
+    public $externalReference;
 }
