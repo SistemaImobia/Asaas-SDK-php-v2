@@ -1,5 +1,4 @@
 <?php
-
 namespace Imobia\Asaas\Entity;
 
 /**
@@ -51,6 +50,7 @@ class Bill extends AbstractEntity
 
     /**
      * @var string
+     *
      */
     public $fee;
 
@@ -83,4 +83,9 @@ class Bill extends AbstractEntity
      * @var array
      */
     public $bankSlipInfo;
+
+    /**
+     * @var array
+     */
+    public $minimumScheduleDate;
 }
