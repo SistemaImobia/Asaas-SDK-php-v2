@@ -56,6 +56,11 @@ final class Payment extends \Imobia\Asaas\Entity\AbstractEntity
     /**
      * @var string
      */
+    public $originalDueDate;
+
+    /**
+     * @var string
+     */
     public $paymentDate;
 
     /**
