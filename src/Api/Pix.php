@@ -60,7 +60,7 @@ class Pix extends \Imobia\Asaas\Api\AbstractApi
      * Create a Pix key
      *
      * @param   array  data from Pix
-     * @return  array  Pix key
+     * @return  PixEntity  Pix key
      */
     public function create(array $data)
     {
