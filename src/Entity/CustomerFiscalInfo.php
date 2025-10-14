@@ -69,4 +69,14 @@ final class CustomerFiscalInfo extends \Imobia\Asaas\Entity\AbstractEntity
      */
     public $municipalServiceCodeHelp;
 
+    /**
+     * @var string
+     */
+    public $nationalPortalTaxCalculationRegimeHelp;
+
+    /**
+     * @var array
+     */
+    public $nationalPortalTaxCalculationRegimeList;
+
 }
