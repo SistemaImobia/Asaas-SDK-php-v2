@@ -59,4 +59,11 @@ class CustomerFiscalInfo extends \Imobia\Asaas\Api\AbstractApi
 
         return json_decode($info);
     }
+
+    public function postNationalPortal($data)
+    {
+        $info = $this->adapter->post(sprintf('%s/customerFiscalInfo/nationalPortal', $this->endpoint), $data);
+
+        return json_decode($info);
+    }
 }
