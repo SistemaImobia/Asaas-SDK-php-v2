@@ -1,5 +1,4 @@
 <?php
-
 namespace Imobia\Asaas\Entity;
 
 final class CommercialInfo extends \Imobia\Asaas\Entity\AbstractEntity
@@ -38,6 +37,11 @@ final class CommercialInfo extends \Imobia\Asaas\Entity\AbstractEntity
      * @var string
      */
     public $companyName;
+
+    /**
+     * @var string
+     */
+    public $companyType;
 
     /**
      * @var string
@@ -82,10 +86,25 @@ final class CommercialInfo extends \Imobia\Asaas\Entity\AbstractEntity
     /**
      * @var string
      */
-    public $city;
+    public $denialReason;
+
+    /**
+     * @var number
+     */
+    public $incomeValue;
 
     /**
      * @var string
      */
-    public $denialReason;
+    public $province;
+
+    /**
+     * @var array
+     */
+    public $city;
+
+    /**
+     * @var array
+     */
+    public $commercialInfoExpiration;
 }
