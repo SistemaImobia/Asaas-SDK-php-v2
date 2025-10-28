@@ -99,12 +99,12 @@ final class CommercialInfo extends \Imobia\Asaas\Entity\AbstractEntity
     public $province;
 
     /**
-     * @var array
+     * @var object
      */
     public $city;
 
     /**
-     * @var array
+     * @var object
      */
     public $commercialInfoExpiration;
 }
