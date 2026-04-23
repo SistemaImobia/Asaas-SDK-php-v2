@@ -72,4 +72,23 @@ class Transfer extends \Imobia\Asaas\Api\AbstractApi
 
         return new TransferEntity($transfer);
     }
+
+    /**
+     * Cancel transfer by id
+     *
+     * @param string|int $id Transfer Id
+     * @return TransferEntity
+     */
+
+    public function cancelById($id)
+
+    {
+
+        $transfer = $this->adapter->delete(sprintf('%s/transfers/%s/cancel', $this->endpoint, $id));
+
+        $transfer = json_decode($transfer);
+
+        return new TransferEntity($transfer);
+
+    }
 }
