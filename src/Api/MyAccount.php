@@ -79,4 +79,11 @@ class MyAccount extends \Imobia\Asaas\Api\AbstractApi
         return $documents;
     }
 
+    public function accountNumber()
+    {
+        $accountNumber = $this->adapter->get(sprintf('%s/myAccount/accountNumber', $this->endpoint));
+        return json_decode($accountNumber);
+
+    }
+
 }
