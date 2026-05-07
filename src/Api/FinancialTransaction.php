@@ -16,7 +16,7 @@ class FinancialTransaction extends \Imobia\Asaas\Api\AbstractApi
      * @param   array  $filters
      * @return  array
      */
-    public function getAll(array $filters = [])
+    public function getAllNovo(array $filters = [])
     {
         if (!isset($filters['limit'])) {
             $filters['limit']  = static::DEFAULT_LIMIT;
@@ -44,7 +44,7 @@ class FinancialTransaction extends \Imobia\Asaas\Api\AbstractApi
         }, $extratoData);
     }
 
-    public function getAllNovo(array $filters = [])
+    public function getAll(array $filters = [])
     {
        if (!isset($filters['limit'])) {
             $filters['limit'] = static::DEFAULT_LIMIT;

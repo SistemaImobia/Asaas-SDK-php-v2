@@ -85,4 +85,9 @@ final class Transfer extends \Imobia\Asaas\Entity\AbstractEntity
      * @var string
      */
     public $subscription;
+
+    /**
+     * @var string
+    */
+    public $endToEndIdentifier;
 }
