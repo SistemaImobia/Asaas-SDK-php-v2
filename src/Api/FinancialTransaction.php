@@ -16,62 +16,37 @@ class FinancialTransaction extends \Imobia\Asaas\Api\AbstractApi
      * @param   array  $filters
      * @return  array
      */
-    public function getAllNovo(array $filters = [])
-    {
-        if (!isset($filters['limit'])) {
-            $filters['limit']  = static::DEFAULT_LIMIT;
-            $filters['offset'] = 0;
-        }
-
-        $extrato = $this->adapter->get(sprintf('%s/financialTransactions?%s', $this->endpoint, http_build_query($filters)));
-
-        $extrato = json_decode($extrato);
-
-        $meta = $this->extractMeta($extrato);
-
-        $extratoData = $extrato->data;
-
-        while ($meta->hasMore) {
-            $filters['offset'] += $filters['limit'];
-            $extrato     = $this->adapter->get(sprintf('%s/financialTransactions?%s', $this->endpoint, http_build_query($filters)));
-            $extrato     = json_decode($extrato);
-            $meta        = $this->extractMeta($extrato);
-            $extratoData = array_merge($extratoData, $extrato->data);
-        }
-
-        return array_map(function ($transaction) {
-            return new FinancialTransactionEntity($transaction);
-        }, $extratoData);
-    }
-
     public function getAll(array $filters = [])
     {
-       if (!isset($filters['limit'])) {
+        if (!isset($filters['limit'])) {
             $filters['limit'] = static::DEFAULT_LIMIT;
         }
 
-        $filters['offset'] = 0 + ($filters['limit'] * ($filters['page'] - 1));
-        
+        if (!isset($filters['offset'])) {
+            $filters['offset'] = 0;
+        }
+
+        $asaasFilters = $filters;
+        unset($asaasFilters['page']);
+
         $extrato = $this->adapter->get(
-            sprintf('%s/financialTransactions?%s', $this->endpoint, http_build_query($filters))
+            sprintf('%s/financialTransactions?%s', $this->endpoint, http_build_query($asaasFilters))
         );
 
-        $extrato = json_decode($extrato);
+        $extrato  = json_decode($extrato);
         $response = $extrato->data;
-        $meta = $this->extractMeta($extrato);
+        $meta     = $this->extractMeta($extrato);
 
-        $limit = (int) ($meta->limit ?? $filters['limit'] ?? 50);
-        $page  = (int) ($filters['page'] ?? 1);
-
-        $hasMore = $meta->hasMore ?? false;
-
-        $currentPage = $page;
-        $lastPage = $hasMore ? ($currentPage + 1) : $currentPage;
-        $total = $hasMore ? ($currentPage * $limit) : $limit;
+        $limit       = (int) ($meta->limit ?? $filters['limit'] ?? 50);
+        $offset      = (int) ($meta->offset ?? $filters['offset'] ?? 0);
+        $hasMore     = $meta->hasMore ?? false;
+        $currentPage = $limit > 0 ? (int) floor($offset / $limit) + 1 : 1;
+        $lastPage    = $hasMore ? ($currentPage + 1) : $currentPage;
+        $total       = $hasMore ? ($offset + $limit * 2) : ($offset + $limit);
 
         $metaResponse = [
             'limit'        => $limit,
-            'offset'       => $meta->offset ?? 0,
+            'offset'       => $offset,
             'hasMore'      => $hasMore,
             'page'         => $currentPage,
             'current_page' => $currentPage,
