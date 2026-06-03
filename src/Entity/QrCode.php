@@ -14,9 +14,14 @@ final class QrCode extends \Imobia\Asaas\Entity\AbstractEntity
     public $id;
 
     /**
-     * @var string|null 
+     * @var string|null
      */
     public $payload;
+
+    /**
+     * @var string|null Imagem do QR Code em base64
+     */
+    public $encodedImage;
 
     /**
      * @var mixed|null Identificador de ponta a ponta

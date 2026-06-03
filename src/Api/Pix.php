@@ -81,7 +81,20 @@ class Pix extends \Imobia\Asaas\Api\AbstractApi
         $this->adapter->delete(sprintf('%s/pix/addressKeys/%s', $this->endpoint, $id));
     }
 
+    /**
+     * Create a static Pix QR Code
+     *
+     * @param   array  $data  QR Code data (addressKey, description, allowsMultiplePayments, etc.)
+     * @return  QrCodeEntity
+     */
+    public function createStaticQrCode(array $data)
+    {
+        $qrCode = $this->adapter->post(sprintf('%s/pix/qrCodes/static', $this->endpoint), $data);
 
+        $qrCode = json_decode($qrCode);
+
+        return new QrCodeEntity($qrCode);
+    }
 
     /**
      * Decode Pix QRCode payment
